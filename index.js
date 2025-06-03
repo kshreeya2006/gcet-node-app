@@ -15,6 +15,7 @@ const userSchema = mongoose.Schema({
 const user= mongoose.model("User", userSchema);
 
 app.use(cors());
+app.use(express.json());
 
 app.get("/", (req, res)=>{
   return res.send(`<h1>Welcome to the API Index</h1>
@@ -49,7 +50,8 @@ app.get("/products", (req, res)=>{
   res.json(products);
 });
 
-app.get("/register", async(req, res)=>{
-  const result= await user.insertOne({name: "John"});
+app.post("/register", async(req, res)=>{
+  const {name} = req.body;
+  const result= await user.insertOne({name});
   return res.json(result);
 });
