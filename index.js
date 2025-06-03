@@ -27,7 +27,7 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res)=>{
-  return res.send(`<h1>Welcome to the API Index</h1>
+  /**return res.send(`<h1>Welcome to the API Index</h1>
     <ol>
       <li><a href="/greet">/greet</a></li>
       <li><a href="/name">/name</a></li>
@@ -36,7 +36,8 @@ app.get("/", (req, res)=>{
       <li><a href="/register">/register</a></li>
       <li><a href="/login">/login</a></li>
     </ol>
-  `);
+  `);**/
+   res.send("Good Morning!!");
 });
 
 app.get("/greet", (req, res)=>{
