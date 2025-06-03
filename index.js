@@ -10,9 +10,18 @@ app.listen(8080,()=>{
 
 const userSchema = mongoose.Schema({
   name: {type: String},
+  email: {type: String},
+  password: {type: String},
 });
 
 const user= mongoose.model("User", userSchema);
+
+const productSchema = mongoose.Schema({
+  name: {type: String},
+  price: {type: Number},
+});
+
+const product= mongoose.model("Product", productSchema);
 
 app.use(cors());
 app.use(express.json());
@@ -25,6 +34,7 @@ app.get("/", (req, res)=>{
       <li><a href="/weather">/weather</a></li>
       <li><a href="/products">/products</a></li>
       <li><a href="/register">/register</a></li>
+      <li><a href="/login">/login</a></li>
     </ol>
   `);
 });
@@ -41,17 +51,23 @@ app.get("/weather", (req, res)=>{
   res.send("29 degrees");
 });
 
-app.get("/products", (req, res)=>{
-  const products=[
-    {name: "Product1", price:45},
-    {name: "Product2", price:50},
-    {name: "Product3", price:60},
-  ];
-  res.json(products);
+app.get("/products", async(req, res)=>{
+  const result= await product.find();
+  return res.json(result);
 });
 
 app.post("/register", async(req, res)=>{
-  const {name} = req.body;
-  const result= await user.insertOne({name});
+  const {name, email, password} = req.body;
+  const result= await user.insertOne({name, email, password});
   return res.json(result);
+});
+
+app.post("/login", async(req, res)=>{
+  const {email, password} = req.body;
+  const result= await user.findOne({email, password});
+  if (result) {
+      return res.json(result);
+    } else {
+      return res.json({ status: "Invalid User or Password" });
+    }
 });
