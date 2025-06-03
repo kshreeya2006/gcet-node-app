@@ -17,10 +17,16 @@ const user= mongoose.model("User", userSchema);
 app.use(cors());
 
 app.get("/", (req, res)=>{
-  return res.send("Good Morning!!");
+  return res.send(`<h1>Welcome to the API Index</h1>
+    <ol>
+      <li><a href="/greet">/greet</a></li>
+      <li><a href="/name">/name</a></li>
+      <li><a href="/weather">/weather</a></li>
+      <li><a href="/products">/products</a></li>
+      <li><a href="/register">/register</a></li>
+    </ol>
+  `);
 });
-
-
 
 app.get("/greet", (req, res)=>{
   res.send("Greetings!!");
