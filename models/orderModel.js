@@ -4,4 +4,5 @@ const orderSchema = mongoose.Schema({
   orderValue: { type: Number },
 });
 
-export default mongoose.model("Order", orderSchema);
+
+export default mongoose.model("Order", orderSchema)
