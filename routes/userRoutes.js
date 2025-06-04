@@ -9,7 +9,7 @@ userRouter.post("/register", async (req, res) => {
   return res.json(result);
 });
 
-userRouter.post("/login", async (req, res) => {
+userRouter.get("/login", async (req, res) => {
   const { email, password } = req.body;
   const result = await userModel.findOne({ email, password });
   if (!result) return res.json({ message: "Invalid user or password" });
