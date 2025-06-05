@@ -14,6 +14,11 @@ app.use(express.json());
 
 const MONGODB_URI= process.env.MONGODB_URI
 
+//In case not connecting to backend APIs via the url
+//const DBUSER= encodeURIComponenet(process.env.DBUSER);
+//const DBPASS= encodeURIComponenet(process.env.DBPASS);
+//const MONGODB_URI= `mongodb+srv://${DBUSER}:${DBPASS}@cluster0.d874fm8.mongodb.net/gcet?retryWrites=true&w=majority&appName=Cluster0`
+
 app.use("/users", userRouter);
 
 app.use("/products", productRouter);
@@ -30,6 +35,9 @@ mongoose
   .catch((error) => {
     console.log(error);
   });
+
+
+
 
 
 /**app.get("/", (req, res)=>{
