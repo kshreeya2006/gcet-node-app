@@ -1,5 +1,6 @@
 import mongoose from 'mongoose'
 const orderSchema = mongoose.Schema({
+  pid: { type: String },
   email: { type: String },
   orderValue: { type: Number },
 });
