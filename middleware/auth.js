@@ -11,7 +11,7 @@ const auth = (req, res, next) => {
       req.role = user.role;
       next();
     } else {
-      res.statu(401).json({ message: "Unauthorized Access" });
+      res.status(401).json({ message: "Unauthorized Access" });
     }
   } catch (err) {
     console.log(err);
