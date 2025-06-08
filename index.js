@@ -37,7 +37,7 @@ mongoose
   });
 
 
-
+export default app;
 
 
 /**app.get("/", (req, res)=>{

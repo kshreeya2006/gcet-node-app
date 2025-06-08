@@ -1,17 +1,24 @@
-import express from 'express'
-import productModel from "../models/productModel.js";
-import auth from '../middleware/auth.js';
-const productRouter = express.Router()
+import express from "express";
+import orderModel from "../models/orderModel.js";
 
-productRouter.get("/all", async (req, res) => {
-  const products = await productModel.find();
-  res.json(products);
+const orderRouter = express.Router();
+
+orderRouter.post("/new", async (req, res) => {
+  const { email, orderValue } = req.body;
+  const result = await orderModel.insertOne({ email, orderValue });
+  return res.json(result);
 });
 
-productRouter.post("/new", async (req, res) => {
-  const product = req.body
-  const products = await productModel.create(product);
-  res.json(products);
+orderRouter.get("/:id", async (req, res) => {
+  const email = req.params.id;
+  const result = await orderModel.find({ email });
+  return res.json(result);
 });
 
-export default productRouter
+
+orderRouter.get("/all", async (req, res) => {
+  const result = await orderModel.find();
+  return res.json(result);
+});
+
+export default orderRouter
