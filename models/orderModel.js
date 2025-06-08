@@ -1,9 +1,9 @@
-import mongoose from 'mongoose'
+import mongoose from "mongoose";
 const orderSchema = mongoose.Schema({
-  pid: { type: String },
   email: { type: String },
   orderValue: { type: Number },
+  orderDate: { type: Date,default: Date.now },
 });
+// const product = mongoose.model("Product", productSchema);
 
-
-export default mongoose.model("Order", orderSchema)
+export default mongoose.model("Order", orderSchema);
